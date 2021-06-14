@@ -31,7 +31,7 @@ function listening(){
 }
 
 app.get('/', function (req, res) {
-    res.sendFile(path.resolve('src/client/index.html'))
+    res.sendFile(path.resolve('src/client/views/index.html'))
 });
 
 app.get('/hello', function (req, res) {
