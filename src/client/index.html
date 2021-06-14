@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Journal</title>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <div id = "app">
+            <div class ="holder headline">
+                Weather Journal App
+            </div>
+            <label>Search by:</label>            
+            <div class="select-container">                                
+                <button class="select-item active-btn" id="typeBtn1" type="submit">Zip</button>
+                <button class="select-item" id="typeBtn2" type="submit">City</button>
+            </div>
+            <div class ="holder zip">                
+                <label id="zipLabel" for="zip">Enter Zipcode here</label>
+                <input type="text" id="zip" placeholder="Enter zip code here (For example, 94040)">
+            </div>
+            <div class ="holder feel">
+                <label for="feelings">How are you feeling today?</label>
+                <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="6" cols="50"></textarea>
+                <div>
+                    <button id="generate" type = "submit"> Generate </button>
+                </div>
+            </div>
+            <div class ="holder entry">
+                <div id="entrytitle" class = "title">Most Recent Entry</div>
+                <div id = "entryHolder">
+                    <div id = "date"></div> 
+                    <div id = "temp"></div>
+                    <div id = "content"></div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/app.js" type="text/javascript"></script>
+    </body>
+</html>
