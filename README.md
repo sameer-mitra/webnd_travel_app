@@ -41,14 +41,6 @@ With **NodeJS** installed, the user can leverage the use of the *Node Package Ma
 npm install or npm i
 ```
 
-The API keys provided to you by the three websites listed should go into a *.env* file to be stored as *environmental variables*. Attached for the user's use is a **.env_API_KEY_INFO_HERE** file that can be used for this purpose. Remove the "**_API_KEY_INFO_HERE**" so that only **.env** remains and add your API keys to the following environmental variables:
-
-```
-GEONAMES_USER = 
-WEATHERBIT_API_KEY =
-PIXABAY_API_KEY =
-```
-
 ## Running the Application
 
 After performing the installation steps above, the following commands ("*scripts*") are available to the user:
@@ -60,21 +52,15 @@ npm start (This starts the node server AFTER the production application is built
 npm test (This runs tests associated with the project)
 ```
 
-After building the production code and running the server, the application is set to run on **port 5000**. You will see the message below in your command prompt:
+After building the dev code (npm run build-dev) and running the server (npm run start), the application is set to run on **port 8082**. You will see the message below in your command prompt:
 
 ```
 Server Running
-Running on localhost: 5000
+Running on localhost: 8082
 ```
 
 Open a web browser and type in the following address:
 
 ```
-http://localhost:5000/
+http://localhost:8080/
 ```
-
-Enter the **city**, **departure date**, and **return date** and then press the submit button. 
-
-At this point, information about your destination will appear.
-
-After you are done reviewing your trip you can reset the planner by hitting "Delete."
