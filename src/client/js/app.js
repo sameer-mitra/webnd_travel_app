@@ -69,14 +69,14 @@ function performAction(e){
 
     getWeatherData(zip, country)
     .then(function(newData){
-        postData('/create', {
+        postData('http://localhost:8082/create', {
             name: newData.name,
             temp: newData.main,
             feelings: feelings,
             date: newDate
         })
     })
-    .then(() => getData('/all'))
+    .then(() => getData('http://localhost:8082/all'))
     .then(function(data){
         // Add data
         console.log(data);  
@@ -160,3 +160,5 @@ const resetUI = async (allData) => {
       console.log("error", error);
     }
 };
+
+export { selectZipOption, selectCityOption, performAction, getWeatherData, postData }

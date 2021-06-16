@@ -19,10 +19,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('src/client'));
+//app.use(express.static('src/client'));
+app.use(express.static('dist'));
 
 // Setup Server
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8082;
 const server = app.listen(port, listening);
 
 function listening(){
@@ -31,7 +32,7 @@ function listening(){
 }
 
 app.get('/', function (req, res) {
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile(path.resolve('dist/index.html'))
 });
 
 app.get('/hello', function (req, res) {

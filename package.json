@@ -2,8 +2,11 @@
     "name": "example-project",
     "version": "1.0.0",
     "main": "server.js",
-    "scripts": {        
-        "start": "node src/server/server.js"
+    "scripts": {
+        "start": "node src/server/server.js",
+        "build": "webpack",
+        "build-prod": "webpack --config webpack.prod.js",
+        "build-dev": "webpack serve  --config webpack.dev.js --open"
     },
     "keywords": [],
     "author": "",
@@ -17,5 +20,18 @@
     },
     "engines": {
         "node": "15.x"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.6",
+        "@babel/preset-env": "^7.14.5",
+        "babel-loader": "^8.2.2",
+        "css-loader": "^5.2.6",
+        "html-webpack-plugin": "^5.3.1",
+        "node-sass": "^6.0.0",
+        "sass-loader": "^12.1.0",
+        "style-loader": "^2.0.0",
+        "webpack": "^5.39.0",
+        "webpack-cli": "^4.7.2",
+        "webpack-dev-server": "^3.11.2"
     }
 }
