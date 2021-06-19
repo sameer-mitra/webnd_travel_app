@@ -16,7 +16,7 @@ In return the user will receive:
 
 * A summary of their inputs
 * The city name, state of province of the city if applicable, and the respective country
-* Specific information about the country such as the country's capital, demonym, official language(s), currency information including the name, code, and symbol, and the flag
+* Specific information about the country such as the country's capital, official language(s), currency information including the name, code, and symbol, and the flag
 * Weather conditions of the city, specifically the longitude/latitude region, on the selected *departure* day
 
 ## Prerequisites

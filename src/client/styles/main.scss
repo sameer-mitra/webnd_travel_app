@@ -1,0 +1,353 @@
+// Neutrals
+$white: #fff;
+$off-white: hsl(45, 29%, 97%);
+$grey-050: hsl(210, 36%, 96%);
+$grey-100: hsl(212, 33%, 89%);
+$grey-200: hsl(210, 31%, 80%);
+$grey-400: hsl(209, 23%, 60%);
+$grey-500: hsl(210, 22%, 49%);
+$grey-600: hsl(209, 28%, 39%);
+$grey-700: hsl(209, 34%, 30%);
+$grey-900: hsl(209, 61%, 16%);
+
+// Green
+$light-green: #a4f1a4;
+$green: #75c275;
+$dark-green: #345634;
+
+* {
+    box-sizing: border-box;
+}
+
+$inline-start: 5px;
+$inline-end: 5px;
+
+
+$container-color: FBFFF1;
+$card-color: F1F4E1;
+$border: solid;
+$min-width: 60%;
+
+h4{
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+}
+
+p {
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+    margin-block-start: 0.25em;
+    margin-block-end: 0.25em;
+}
+
+a {
+    margin-inline-start: $inline-start;
+    margin-inline-end: $inline-end;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: $grey-900;
+    background: $white;
+    font-family: 'Poppins', sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+main {
+    flex: 2;
+}
+
+section.banner {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background: url('../assets/banner.jpg') center 25% / cover no-repeat;
+    height: 240px;
+    position: relative;
+    z-index: 1;
+    & h1 {
+        color: $white;
+        z-index: 100;
+        font-size: 42px;
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+    & h2 {
+        color: $white;
+        z-index: 100;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: FBFFF1;
+    margin-bottom: 10px;
+}
+
+.header-title{
+    font-size: 32px;
+    margin-top: 15px;
+    margin-left: 30px;
+    float: left;
+}
+
+.planner {
+    background-color: $off-white;
+    border: solid;
+    border-width: 1px;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    min-width: $min-width;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.msg-info{
+    background-color: $light-green;
+    border: solid;
+    border-color: $dark-green;
+    border-width: 2px;
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+#planner-title{
+    text-align: center;
+}
+
+.form-plan{
+    display: grid;
+    grid-gap: 6px;
+    justify-content: center;
+}
+
+#button-submit{
+    width: 100%;
+}
+
+#button-submit:hover {
+    font-weight: bold;
+}
+
+#msg{
+    display: none;
+}
+
+#result-data{
+    display: none;
+}
+
+.result-section {
+    background-color: $off-white;
+    border: solid;
+    border-width: 1px;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    min-width: $min-width;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#pixabay-images img {
+    width: $min-width;
+    height: auto;
+}
+
+#trip-info{
+    background-color: $card-color;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    width: 95%;
+}
+
+#city-info{
+    background-color: $card-color;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    width: 95%;
+}
+
+#country-info{
+    background-color: $card-color;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    width: 95%;
+}
+// Flag Info
+#flag-result{
+    width: 50%;
+    height: auto;
+    align-self: center;
+}
+
+//Weather and Advisory
+#weather-info {
+    background-color: $card-color;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); 
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    width: 95%;
+}
+
+
+.weather-and-advisory {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#weather-icon {
+    text-align: center;
+    margin: auto;
+}
+
+#travel-advisory-info {
+    background-color: F0B4B4;
+    height: fit-content;
+    padding-bottom: 20px;
+}
+
+//Pixabay Images
+#image-info {
+    margin: 0 auto;
+}
+
+#image-info h4 {
+    text-align: center;
+}
+
+#pixabay-images {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+//Print and Delete Buttons
+.print-reset{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+#print:hover {
+    font-weight: bold;
+}
+
+#delete:hover {
+    font-weight: bold;
+}
+
+
+//Planner
+@media (max-width: 1000px){
+    .planner{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #date-departure{
+        width: 100%;
+    }
+
+    #date-return{
+        width: 100%;
+    }
+
+    #quote {
+        font-size: 92%;
+    }
+}
+
+@media (max-width: 800px){
+    #weather-info{
+        font-size: 92%;
+    }
+}
+
+@media (max-width: 580px){
+    .trip-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .weather-and-advisory{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #pixabay-images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #pixabay1{
+        margin-bottom: 10px;
+    }
+
+    #pixabay2{
+        margin-bottom: 10px;
+    }
+
+    #travel-advisory-info{
+        margin-top: 20px
+    }
+    .print-delete{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #print{
+        margin: 10px;
+    }
+
+    .sponsor-icons{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    footer{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

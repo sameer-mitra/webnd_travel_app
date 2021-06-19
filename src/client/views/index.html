@@ -2,38 +2,83 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Weather Journal</title>
-        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+        <title>Travel App</title>
     </head>
     <body>
         <div id = "app">
-            <div class ="holder headline">
-                Weather Journal App
-            </div>
-            <label>Search by:</label>            
-            <div class="select-container">                                
-                <button class="select-item active-btn" id="typeBtn1" type="submit">Zip</button>
-                <button class="select-item" id="typeBtn2" type="submit">City</button>
-            </div>
-            <div class ="holder zip">                
-                <label id="zipLabel" for="zip">Enter Zipcode here</label>
-                <input type="text" id="zip" placeholder="Enter zip code here (For example, 94040)">
-            </div>
-            <div class ="holder feel">
-                <label for="feelings">How are you feeling today?</label>
-                <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="6" cols="50"></textarea>
-                <div>
-                    <button id="generate" type = "submit"> Generate </button>
-                </div>
-            </div>
-            <div class ="holder entry">
-                <div id="entrytitle" class = "title">Most Recent Entry</div>
-                <div id = "entryHolder">
-                    <div id = "date"></div> 
-                    <div id = "temp"></div>
-                    <div id = "content"></div>
-                </div>
-            </div>
+            <section class="banner">
+                <h1>Travel Planning App</h1>
+            </section>
+            <main>
+                <section class="planner" onsubmit="return Client.handleSubmit(event)">
+                    <div id="planner-title">
+                        <h3>Select your destination and dates</h3>
+                    </div>
+                  <form id="plan-create" class="form-plan">
+                    <label for="location">City</label>
+                    <input id="destination" name="location" type="text" placeholder="e.g. London" value="London" required>
+    
+                    <div class="dates">
+                        <label for="departure">Departure Date:</label>
+                        <input id="date-departure" name="departure" type="date" required>
+    
+                        <label for="return">Return Date:</label>
+                        <input id="date-return" name="return" type="date" required>
+                    </div>
+    
+                    <input type="submit" id="button-submit" name="" value="Submit">
+                  </form>                  
+                </section>
+
+                <section>
+                    <div id="msg" class="msg-info"></div>
+                </section>
+                    
+                <section id="result-data" class="result-section"> 
+                    <div id="image-info">                       
+                        <div id="pixabay-images">
+                            <img alt="destination_image_1" id="pixabay1">
+                        </div>
+                    </div>                           
+                    <div id="trip-info">                        
+                        <p id="departure-date-result"><b>Departing: </b><span id="departure"></span></p>
+                        <p id="return-date-result"><b>Returning: </b><span id="return"></span></p>
+                        <p id="days-out-result"><b>Departing in: </b><span id="days-out"></span> Days</p>
+                        <p id="days-duration-result"><b>Duration: </b><span id="trip-duration"></span> Days</p>
+                    </div>                    
+                    <div id="city-info">                        
+                        <p id="city-result"><b>City: </b><span id="city"></span></p>
+                        <p id="province-result"><b>State/Province: </b><span id="province"></span></p>
+                        <p id="country-result"><b>Country: </b><span id="country"></span></p>
+                    </div>
+                    <div id="country-info">                        
+                        <p id="capital-result"><b>Capital: </b><span id="capital"></span></p>
+                        <p id="languages-result"><b>Language(s): </b><span id="languages"></span></p>
+                        <p id="currency-result"><b>Currency: </b><span id="curr-name"></span> (<span id="curr-symbol"></span>)</p>
+                        <p><b>Flag: </b><img id="flag-result" alt="national_flag"></p>
+                    </div>                           
+                    <div id="weather-info">
+                        <h4>Weather Information:</h4>
+                        <p id="w-icon"><img id="weather-icon" alt="weather_icon"></p>
+                        <p id="weather-description"><span id="weather-desc"></span></p>
+                        <p id="high-temp-result"><b>Temp (High): </b><span id="high-temp"></span> &#176C</p>
+                        <p id="low-temp-result"><b>Temp (Low): </b><span id="low-temp"></span> &#176C</p>
+                        <p id="humidity-result"><b>Humidity (%): </b><span id="humidity"></span> %</p>
+                        <p id="prob-precipitation"><b>Precipitation (%): </b><span id="precipitation"></span> %</p>
+                    </div>
+                    <div id="travel-advisory-info">
+                        <h4>Travel Advice:</h4>
+                        <p id="advisory-result"></p>
+                        <p id="further-info"></p>
+                        <a id="advisory-hyperlink" href=""></a>
+                    </div>                            
+                    
+                    <div class="print-reset">
+                        <button id="print" href="#">Print</a>
+                        <button id="reset" href="#">Reset</a>
+                    </div>
+                </div>                           
+            </main>
         </div>
     </body>
 </html>
