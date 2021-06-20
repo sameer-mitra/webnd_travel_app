@@ -1,4 +1,6 @@
 // Define variables for Document object collectors
+import {    convertTimeUnits, splitDate, formatLanguages } from './helperFunctions';
+
 
 // Trip Planner - User Entry Point
 const resultID = document.getElementById('result-data');
@@ -11,6 +13,9 @@ const entryForm = document.getElementById('plan-create');
 // Info Message
 const msgInfo = document.getElementById('msg');
 
+// Error Message
+const errorInfo = document.getElementById('error');
+
 // Location Results Selectors
 const cityResult = document.getElementById('city');
 const provinceResult = document.getElementById('province');
@@ -21,7 +26,7 @@ const countryCapital = document.getElementById('capital');
 const languages = document.getElementById('languages');
 const currencyName = document.getElementById('curr-name');
 const currencySymbol = document.getElementById('curr-symbol');
-const flag = document.getElementById('flag-result');
+const flag = document.getElementById('result-flag');
 
 // Weather Selectors
 const highTemp = document.getElementById('high-temp');
@@ -32,18 +37,20 @@ const weatherDesc = document.getElementById('weather-desc');
 const weatherIconRef = document.getElementById('weather-icon');
 
 // Travel Advisory Selectors
-const advisory = document.getElementById('advisory-result');
-const advisoryMessage = document.getElementById('further-info');
-const advisoryLink = document.getElementById('advisory-hyperlink');
+const advisory = document.getElementById('result-advisory');
+const advisoryMessage = document.getElementById('result-advisory-info');
+const advisoryLink = document.getElementById('result-advisory-link');
 
 // Pixabay Image selectors
 const image1 = document.getElementById('pixabay1');
 
 async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Begin Submission");
     msgInfo.style.display = 'block';
     msgInfo.innerHTML = "Loading...";
+    errorInfo.style.display = 'none';
+    errorInfo.innerHTML = "";
+    resultID.style.display = 'none';
     
     // Selectors defined to obtain user input data
     let location = document.getElementById('destination').value;
@@ -57,17 +64,17 @@ async function handleSubmit(event) {
 
     // Calculates duration
     const travelTime = endDate.getTime() - startDate.getTime();
-    const daysInTravel = timeUnitConversion(travelTime);
+    const daysInTravel = convertTimeUnits(travelTime);
     console.log(daysInTravel);
 
     // Calculates days from today until trip
     const timeUntilTrip = startDate.getTime() - today;
-    const daysUntilTrip = timeUnitConversion(timeUntilTrip) + 1;
+    const daysUntilTrip = convertTimeUnits(timeUntilTrip) + 1;
     console.log(daysUntilTrip);
 
     if(daysInTravel > 0)
     {
-      await postTrip('http://localhost:8082/createTrip', { 
+      await postTrip('http://localhost:8082/addTrip', { 
         Location: location, 
         Start : startDate, 
         End: endDate, 
@@ -76,6 +83,10 @@ async function handleSubmit(event) {
       });
 
       await fetchLocal(`http://localhost:8082/getGeonames`);
+      
+      await fetchLocal(`http://localhost:8082/getCityImage`);
+
+      await fetchLocal(`http://localhost:8082/getCountryImage`);
 
       await fetchLocal(`http://localhost:8082/getWeather`);  
 
@@ -83,9 +94,6 @@ async function handleSubmit(event) {
 
       await fetchLocal(`http://localhost:8082/getTravelAdvice`)
 
-      await fetchLocal(`http://localhost:8082/getCityImage`);
-
-      await fetchLocal(`http://localhost:8082/getCountryImage`);
 
       const tripData = await fetchLocal(`http://localhost:8082/getTrip`);
 
@@ -93,9 +101,12 @@ async function handleSubmit(event) {
       updateUI(tripData)
 
   }else{
-    alert('Please enter a valid trip duration!! Entries must start today or in the future and end at least one day after');
+    //alert('Please enter a valid trip duration!! Entries must start today or in the future and end at least one day after');
     msgInfo.style.display = 'none';
     msgInfo.innerHTML = "";
+    errorInfo.style.display = 'block';
+    errorInfo.innerHTML ="Entries must start today or in the future and end at least one day after.";
+
   }
 
 }
@@ -157,12 +168,12 @@ const updateUI = async (results) => {
   humidity.innerHTML = results.humidity;
   precipProb.innerHTML = results.precipProb;
   weatherDesc.innerHTML = results.weatherDesc;
-  let weatherIconCall = `/icons/${results.weatherIcon}.png`;
+  let weatherIconCall = `${results.weatherIcon}.png`;
   weatherIconRef.setAttribute('src', weatherIconCall);
 
   //Update Country Info Section
   countryCapital.innerHTML = results.capital;
-  languages.innerHTML = languageFormatter(results.languages);
+  languages.innerHTML = formatLanguages(results.languages);
   currencyName.innerHTML = results.currencyInfo.name;
   currencySymbol.innerHTML = results.currencyInfo.symbol;
   flag.src = results.flag;
@@ -181,6 +192,7 @@ const updateUI = async (results) => {
   }
 
   msgInfo.style.display = 'none';
+  errorInfo.style.display = 'none';
   msgInfo.innerHTML = "";
   
 }
@@ -197,34 +209,8 @@ const resetPage = () => {
   entryForm.reset();
   location.reload();
   msgInfo.style.display = 'none';
+  errorInfo.style.display = 'none';
   resultID.style.display = 'none';
 }
 
-// Converts time from miliseconds to days
-const timeUnitConversion = (timeInMilliseconds) => {
-  let timeInDays = timeInMilliseconds/(1000 * 60 * 60 * 24);
-  return Math.ceil(timeInDays);
-}
-
-// Splits the date (yyyy-mm-dd) from the time separated by "T"
-const splitDate = (dateAPI) => {
-  let newDate = dateAPI.split('T')
-  return newDate[0];
-}
-
-// This function accounts for when countries have more than 1 national language
-// The value returned is either an array (for > 1 language) or a string
-const languageFormatter = (languageArray) => {
-  if(typeof(languageArray) === 'string'){
-    return languageArray;
-  } else {
-    let langString = ''
-    for (let lang of languageArray){
-      langString = langString.concat(lang).concat(', ');
-    }
-    langString = langString.slice(0,langString.length - 2);
-    return langString;
-    }
-}
-
-export { handleSubmit, timeUnitConversion, splitDate, languageFormatter, printPage, resetPage }
+export { handleSubmit, printPage, resetPage }

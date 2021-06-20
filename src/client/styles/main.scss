@@ -15,6 +15,16 @@ $light-green: #a4f1a4;
 $green: #75c275;
 $dark-green: #345634;
 
+// Blue
+$light-blue: #87CEEB;
+$blue: #6495ED;
+$dark-blue: #0047AB;
+
+// Red
+$light-red: #EE4B2B;
+$red: #DC143C;
+$dark-red: #880808;
+
 * {
     box-sizing: border-box;
 }
@@ -71,6 +81,8 @@ section.banner {
     height: 240px;
     position: relative;
     z-index: 1;
+    border-color: $dark-blue;
+    border-width: 2px;
     & h1 {
         color: $white;
         z-index: 100;
@@ -118,13 +130,37 @@ section.banner {
 }
 
 .msg-info{
-    background-color: $light-green;
+    background-color: $green;
     border: solid;
     border-color: $dark-green;
     border-width: 2px;
-    text-align: center;
-    display: flex;
+    text-align: center; 
+    align-self: center;   
     width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#msg{
+    display: none;
+}
+
+.error-info{
+    background-color: $red;
+    border: solid;
+    border-color: $dark-red;
+    border-width: 2px;
+    text-align: center; 
+    align-self: center;   
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#error{
+    display: none;
 }
 
 #planner-title{
@@ -138,16 +174,16 @@ section.banner {
 }
 
 #button-submit{
-    width: 100%;
+    font-size: 1.2em;
+    margin: 5px;
 }
 
 #button-submit:hover {
-    font-weight: bold;
+    color: $off-white;
+    background-color: $blue;
 }
 
-#msg{
-    display: none;
-}
+
 
 #result-data{
     display: none;
@@ -206,7 +242,7 @@ section.banner {
     width: 95%;
 }
 // Flag Info
-#flag-result{
+#result-flag{
     width: 50%;
     height: auto;
     align-self: center;
@@ -231,8 +267,8 @@ section.banner {
 }
 
 #weather-icon {
-    text-align: center;
     margin: auto;
+    width: 30%;
 }
 
 #travel-advisory-info {
@@ -255,9 +291,21 @@ section.banner {
     justify-content: space-evenly;
 }
 
+.footer{
+    background-color: $blue;
+    color:hsl(45, 29%, 97%);
+    border: solid;
+    border-color: $dark-blue;
+    border-width: 2px;
+    text-align: center; 
+    align-self: center;   
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}
 
 
-//Print and Delete Buttons
+//Print and Reset Buttons
 .print-reset{
     display: flex;
     flex-flow: row nowrap;
@@ -266,14 +314,25 @@ section.banner {
     padding-bottom: 20px;
 }
 
+#print{
+    font-size: 1.2em;
+    margin: 5px;
+}
+
 #print:hover {
-    font-weight: bold;
+    color: $off-white;
+    background-color: $blue;
 }
 
-#delete:hover {
-    font-weight: bold;
+#reset{
+    font-size: 1.2em;
+    margin: 5px;
 }
 
+#reset:hover {
+    color: $off-white;
+    background-color: $blue;
+}
 
 //Planner
 @media (max-width: 1000px){
@@ -323,31 +382,14 @@ section.banner {
         margin-bottom: 10px;
     }
 
-    #pixabay2{
-        margin-bottom: 10px;
-    }
-
     #travel-advisory-info{
         margin-top: 20px
     }
-    .print-delete{
+    .print-reset{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    #print{
-        margin: 10px;
-    }
-
-    .sponsor-icons{
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    footer{
-        display: flex;
-        flex-direction: column-reverse;
-    }
 }

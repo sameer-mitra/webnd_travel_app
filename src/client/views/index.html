@@ -16,14 +16,14 @@
                     </div>
                   <form id="plan-create" class="form-plan">
                     <label for="location">City</label>
-                    <input id="destination" name="location" type="text" placeholder="e.g. London" value="London" required>
+                    <input id="destination" name="location" type="text" placeholder="e.g. London" value="London" required="true">
     
                     <div class="dates">
                         <label for="departure">Departure Date:</label>
-                        <input id="date-departure" name="departure" type="date" required>
+                        <input id="date-departure" name="departure" type="date" required="true">
     
                         <label for="return">Return Date:</label>
-                        <input id="date-return" name="return" type="date" required>
+                        <input id="date-return" name="return" type="date" required="true">
                     </div>
     
                     <input type="submit" id="button-submit" name="" value="Submit">
@@ -33,6 +33,9 @@
                 <section>
                     <div id="msg" class="msg-info"></div>
                 </section>
+                <section>
+                    <div id="error" class="error-info"></div>
+                </section>
                     
                 <section id="result-data" class="result-section"> 
                     <div id="image-info">                       
@@ -41,36 +44,36 @@
                         </div>
                     </div>                           
                     <div id="trip-info">                        
-                        <p id="departure-date-result"><b>Departing: </b><span id="departure"></span></p>
-                        <p id="return-date-result"><b>Returning: </b><span id="return"></span></p>
-                        <p id="days-out-result"><b>Departing in: </b><span id="days-out"></span> Days</p>
-                        <p id="days-duration-result"><b>Duration: </b><span id="trip-duration"></span> Days</p>
+                        <p id="result-departure"><b>Departing: </b><span id="departure"></span></p>
+                        <p id="result-return"><b>Returning: </b><span id="return"></span></p>
+                        <p id="result-days"><b>Departing in: </b><span id="days-out"></span> Days</p>
+                        <p id="result-duration"><b>Duration: </b><span id="trip-duration"></span> Days</p>
                     </div>                    
                     <div id="city-info">                        
-                        <p id="city-result"><b>City: </b><span id="city"></span></p>
-                        <p id="province-result"><b>State/Province: </b><span id="province"></span></p>
-                        <p id="country-result"><b>Country: </b><span id="country"></span></p>
+                        <p id="result-city"><b>City: </b><span id="city"></span></p>
+                        <p id="result-province"><b>State/Province: </b><span id="province"></span></p>
+                        <p id="result-country"><b>Country: </b><span id="country"></span></p>
                     </div>
                     <div id="country-info">                        
-                        <p id="capital-result"><b>Capital: </b><span id="capital"></span></p>
-                        <p id="languages-result"><b>Language(s): </b><span id="languages"></span></p>
-                        <p id="currency-result"><b>Currency: </b><span id="curr-name"></span> (<span id="curr-symbol"></span>)</p>
-                        <p><b>Flag: </b><img id="flag-result" alt="national_flag"></p>
+                        <p id="result-capital"><b>Capital: </b><span id="capital"></span></p>
+                        <p id="result-languages"><b>Language(s): </b><span id="languages"></span></p>
+                        <p id="result-currency"><b>Currency: </b><span id="curr-name"></span> (<span id="curr-symbol"></span>)</p>
+                        <p><b>Flag: </b><img id="result-flag" alt="national_flag"></p>
                     </div>                           
                     <div id="weather-info">
                         <h4>Weather Information:</h4>
                         <p id="w-icon"><img id="weather-icon" alt="weather_icon"></p>
-                        <p id="weather-description"><span id="weather-desc"></span></p>
-                        <p id="high-temp-result"><b>Temp (High): </b><span id="high-temp"></span> &#176C</p>
-                        <p id="low-temp-result"><b>Temp (Low): </b><span id="low-temp"></span> &#176C</p>
-                        <p id="humidity-result"><b>Humidity (%): </b><span id="humidity"></span> %</p>
-                        <p id="prob-precipitation"><b>Precipitation (%): </b><span id="precipitation"></span> %</p>
+                        <p id="result-weather"><span id="weather-desc"></span></p>
+                        <p id="result-weather-high"><b>Temp (High): </b><span id="high-temp"></span> &#176C</p>
+                        <p id="result-weather-low"><b>Temp (Low): </b><span id="low-temp"></span> &#176C</p>
+                        <p id="result-weather-humidity"><b>Humidity (%): </b><span id="humidity"></span> %</p>
+                        <p id="result-weather-precipitation"><b>Precipitation (%): </b><span id="precipitation"></span> %</p>
                     </div>
                     <div id="travel-advisory-info">
                         <h4>Travel Advice:</h4>
-                        <p id="advisory-result"></p>
-                        <p id="further-info"></p>
-                        <a id="advisory-hyperlink" href=""></a>
+                        <p id="result-advisory"></p>
+                        <p id="result-advisory-info"></p>
+                        <a id="result-advisory-link" href=""></a>
                     </div>                            
                     
                     <div class="print-reset">
@@ -81,4 +84,5 @@
             </main>
         </div>
     </body>
+    <footer class="footer"><b>Developed for Udacity by Sameer Mitra</b></footer>
 </html>

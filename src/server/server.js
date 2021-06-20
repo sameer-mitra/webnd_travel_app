@@ -23,7 +23,7 @@ module.exports = app;
 // API Access Variables
 // Geonames API
 const geoNamesUrl = 'http://api.geonames.org/searchJSON?q=';
-const geoNamesUrlArgs = `&maxRows=1&fuzzy=0.6&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
+const geoNamesUrlArgs = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
 
 // Weatherbit API
 const weatherBitUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
@@ -51,7 +51,7 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-app.post('/createTrip', (req, res) => {
+app.post('/addTrip', (req, res) => {
     let newData = req.body;
     let newEntry = {
       location: newData.Location,
@@ -127,7 +127,6 @@ app.get('/getCountries', (req, res) => {
         .then(response =>{
           console.log(response)
           tripData['capital'] = response.capital;
-          tripData['demonym'] = response.demonym;
           tripData['currencyInfo'] = {code: response.currencies[0].code, 
             name: response.currencies[0].name, 
             symbol: response.currencies[0].symbol}

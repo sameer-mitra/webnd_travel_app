@@ -12,16 +12,17 @@ The user is asked for the following:
 * Date of departure 
 * Date of return
 
-In return the user will receive:
+The app will return:
 
-* A summary of their inputs
-* The city name, state of province of the city if applicable, and the respective country
-* Specific information about the country such as the country's capital, official language(s), currency information including the name, code, and symbol, and the flag
-* Weather conditions of the city, specifically the longitude/latitude region, on the selected *departure* day
+* The city name, state or province (if applicable), and the respective country.
+* Specific information about the country such as the country's capital, official language(s), currency information, and the flag.
+* Weather conditions of the city, specifically the longitude/latitude region, on the selected *departure* day.
 
 ## Prerequisites
 
-The project uses **NodeJS** and specifically **Express** to handle the server and middleware for client/server interactions. If you don't have NodeJS installed, download it here at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+The project uses **NodeJS** and specifically **Express** to handle the server and middleware for client/server interactions. 
+
+If you don't have NodeJS installed, download it here at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 The app also requires access to three APIs from the listed web services listed below. 
 
@@ -35,7 +36,7 @@ Proceed to each website and follow their instructions to obtain an API key.
 
 Copy the URL to this git repository: [https://github.com/sameer-mitra/webnd_travel_app](https://github.com/sameer-mitra/webnd_travel_app) and clone it to your local device within your respective *command prompt*.
 
-With **NodeJS** installed, the user can leverage the use of the *Node Package Manager* or "*npm*" commands to install the required packages and dependencies. Go the file with your cloned copy of the app and type:
+Go the folder with your cloned copy of the app and type:
 
 ```
 npm install or npm i
@@ -48,7 +49,7 @@ After performing the installation steps above, the following commands ("*scripts
 ```
 npm run build-dev (This builds the application for development purposes)
 npm run build-prod (This builds the application for production. The end users will use this)
-npm start (This starts the node server AFTER the production application is built)
+npm start (This starts the node server)
 npm test (This runs tests associated with the project)
 ```
 

@@ -1,7 +1,7 @@
 import './styles/main.scss';
 
 import {handleSubmit} from './js/appFunctions';
-import {dateToString} from './js/dateFunctions';
+import {formatDate} from './js/helperFunctions';
 import {printPage} from './js/appFunctions';
 import {resetPage} from './js/appFunctions';
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export {
     handleSubmit,
-    dateToString,
+    formatDate,
     printPage,
     resetPage
 }
@@ -73,8 +73,8 @@ export {
     // console.log(d.getYear());
     // console.log(maxYear);
 
-    let minDate = dateToString(minDay, minMonth, minYear);
-    let maxDate = dateToString(maxDay, maxMonth, maxYear);
+    let minDate = formatDate(minDay, minMonth, minYear);
+    let maxDate = formatDate(maxDay, maxMonth, maxYear);
     // console.log(minDate, maxDate);
 
     dateDeparture.setAttribute('min', minDate);
