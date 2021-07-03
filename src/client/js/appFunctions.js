@@ -180,7 +180,7 @@ const updateUI = async (results) => {
 
   //Update Advisory Info Section
   advisory.innerHTML = results.advise;
-  advisoryMessage.innerHTML = 'For further information click on the link here:'
+  advisoryMessage.innerHTML = 'Click on the link here for further information:'
   advisoryLink.href = 'https://www.travel-advisory.info/all-countries'
   advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
