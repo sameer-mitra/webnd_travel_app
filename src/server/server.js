@@ -20,7 +20,6 @@ app.use(express.static('dist'));
 
 module.exports = app;
 
-// API Access Variables
 // Geonames API
 const geoNamesUrl = 'http://api.geonames.org/searchJSON?q=';
 const geoNamesUrlArgs = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
@@ -40,8 +39,10 @@ const pixabayUrlArgs = '&image_type=photo&order=popular';
 // Travel Advisory (COVID-19) API
 const travelAdviceUrl = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
 
+
+//Added testing endpoint.
 app.get('/test', async (req, res) => {
-  res.json({message: 'pass!'})
+  res.json({message: 'done'})
 })
 
 // Data Storage Object
@@ -52,13 +53,13 @@ app.get('/', function (req, res) {
 })
 
 app.post('/addTrip', (req, res) => {
-    let newData = req.body;
+    let newTrip = req.body;
     let newEntry = {
-      location: newData.Location,
-      startDate: newData.Start,
-      endDate: newData.End,
-      duration: newData.Duration,
-      daysToTrip: newData.DaysToGo
+      location: newTrip.Location,
+      startDate: newTrip.Start,
+      endDate: newTrip.End,
+      duration: newTrip.Duration,
+      daysToTrip: newTrip.DaysToGo
     }
     
     tripData = newEntry;
@@ -83,6 +84,7 @@ app.get('/getGeonames', (req, res) => {
             tripData['adminName'] = response.geonames[0].adminName1;
             tripData['countryName'] = response.geonames[0].countryName;
             tripData['code'] = response.geonames[0].countryCode;
+            tripData['population'] = response.geonames[0].population;
             res.send(true);
           } catch (e) {
             console.log("Error: ", e);

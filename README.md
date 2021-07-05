@@ -65,3 +65,29 @@ Open a web browser and type in the following address:
 ```
 http://localhost:8080/
 ```
+
+## Additional Features
+
+The following additional features were implemented:
+
+ - Add end date and display length of trip.
+ - Integrate the REST Countries API to pull in data for the country being visited.
+ - Incorporate icons into forecast.
+ - Allow user to Print their trip and/or export to PDF.
+
+## Further Work
+
+The following features were not implemented, but can be added in the future:
+
+ - Pull in an image for the country from Pixabay API when the entered location brings up no results (good for obscure localities).
+ - Allow user to add multiple destinations on the same trip.
+ - Pull in weather for additional locations.
+ - Allow the user to add hotel and/or flight data.
+ - Multiple places to stay? Multiple flights?
+ - Use Local Storage to save the data so that when they close, then revisit the page, their information is still there.
+ - Allow the user to remove the trip.
+ - Instead of just pulling a single day forecast, pull the forecast for multiple days.
+ - Allow the user to add a todo list and/or packing list for their trip.
+ - Allow the user to add additional trips (this may take some heavy reworking, but is worth the challenge).
+ - Automatically sort additional trips by countdown.
+ - Move expired trips to bottom/have their style change so it’s clear it’s expired.

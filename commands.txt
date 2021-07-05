@@ -1,0 +1,5 @@
+npm run build
+npm run build-dev (to run front end)
+npm run test (to run the tests)
+
+npm run start (to run the server)

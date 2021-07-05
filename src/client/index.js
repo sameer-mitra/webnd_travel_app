@@ -81,4 +81,6 @@ export {
     dateDeparture.setAttribute('max', maxDate);
     dateReturn.setAttribute('min', minDate);
 
+    dateDeparture.value = minDate;
+    dateReturn.value = maxDate;
 })();

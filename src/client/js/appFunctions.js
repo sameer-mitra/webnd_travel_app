@@ -97,7 +97,9 @@ async function handleSubmit(event) {
 
       const tripData = await fetchLocal(`http://localhost:8082/getTrip`);
 
+      console.log('###############');
       console.log(tripData);
+      console.log('###############');
       updateUI(tripData)
 
   }else{
