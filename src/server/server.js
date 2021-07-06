@@ -1,4 +1,3 @@
-// Server-Side Modules
 const express = require('express');
 const app = express();
 
@@ -22,22 +21,22 @@ module.exports = app;
 
 // Geonames API
 const geoNamesUrl = 'http://api.geonames.org/searchJSON?q=';
-const geoNamesUrlArgs = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; //&fuzzy=0.6
+const geoNamesUrlArgs = `&maxRows=1&username=${process.env.GEONAMES_USERNAME}`; 
 
 // Weatherbit API
-const weatherBitUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?'; // Add &lat= & &lon=
+const weatherBitUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?'; 
 const weatherBitUrlArgs1 = `&key=${process.env.WEATHERBIT_API_KEY}`;
 const weatherBitUrlArgs2 = '&lang=en';
 
 // Rest Countries API
-const restCountriesUrl = 'https://restcountries.eu/rest/v2/alpha/'; //Add partial country name
+const restCountriesUrl = 'https://restcountries.eu/rest/v2/alpha/'; 
 
 // Pixabay API
-const pixabayUrl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=`; //Add city name with spaces as '+' 
+const pixabayUrl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=`; 
 const pixabayUrlArgs = '&image_type=photo&order=popular';
 
 // Travel Advisory (COVID-19) API
-const travelAdviceUrl = 'https://www.travel-advisory.info/api?countrycode='; // Add two digit ISO country code
+const travelAdviceUrl = 'https://www.travel-advisory.info/api?countrycode='; 
 
 
 //Added testing endpoint.
@@ -46,7 +45,7 @@ app.get('/test', async (req, res) => {
 })
 
 // Data Storage Object
-let tripData = {};
+let trip = {};
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
@@ -62,7 +61,7 @@ app.post('/addTrip', (req, res) => {
       daysToTrip: newTrip.DaysToGo
     }
     
-    tripData = newEntry;
+    trip = newEntry;
 
     res.send('ok');
 })
@@ -70,7 +69,7 @@ app.post('/addTrip', (req, res) => {
 
 app.get('/getGeonames', (req, res) => {
   console.log('GET geonamesData')
-  const url = `${geoNamesUrl}${fixSpaces(tripData.location)}${geoNamesUrlArgs}`;
+  const url = `${geoNamesUrl}${fixSpaces(trip.location)}${geoNamesUrlArgs}`;
   console.log(url);
     fetch(url)
       .then(res => res.json())
@@ -78,13 +77,13 @@ app.get('/getGeonames', (req, res) => {
           try {
             console.log('Data From GeoNames')
             console.log(response);
-            tripData['long'] = response.geonames[0].lng;
-            tripData['lat'] = response.geonames[0].lat;
-            tripData['name'] =response.geonames[0].name; 
-            tripData['adminName'] = response.geonames[0].adminName1;
-            tripData['countryName'] = response.geonames[0].countryName;
-            tripData['code'] = response.geonames[0].countryCode;
-            tripData['population'] = response.geonames[0].population;
+            trip['long'] = response.geonames[0].lng;
+            trip['lat'] = response.geonames[0].lat;
+            trip['name'] =response.geonames[0].name; 
+            trip['adminName'] = response.geonames[0].adminName1;
+            trip['countryName'] = response.geonames[0].countryName;
+            trip['code'] = response.geonames[0].countryCode;
+            trip['population'] = response.geonames[0].population;
             res.send(true);
           } catch (e) {
             console.log("Error: ", e);
@@ -97,21 +96,21 @@ app.get('/getGeonames', (req, res) => {
 
 app.get('/getWeather', (req, res) => {
   console.log('GET weather');
-  const url = `${weatherBitUrl}lat=${tripData.lat}&lon=${tripData.long}${weatherBitUrlArgs1}${weatherBitUrlArgs2}`;
+  const url = `${weatherBitUrl}lat=${trip.lat}&lon=${trip.long}${weatherBitUrlArgs1}${weatherBitUrlArgs2}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          let forecastDay = tripData.daysToTrip;
+          let forecastDay = trip.daysToTrip;
           const data = response.data[forecastDay]
           console.log(data)
 
-          tripData.maxTemp = data.max_temp;
-          tripData.minTemp = data.min_temp;
-          tripData.humidity = data.rh;
-          tripData.precipProb = data.pop; 
-          tripData.weatherDesc = data.weather.description
-          tripData.weatherIcon = data.weather.icon
+          trip.maxTemp = data.max_temp;
+          trip.minTemp = data.min_temp;
+          trip.humidity = data.rh;
+          trip.precipProb = data.pop; 
+          trip.weatherDesc = data.weather.description
+          trip.weatherIcon = data.weather.icon
 
           res.send(true)
     })
@@ -122,26 +121,26 @@ app.get('/getWeather', (req, res) => {
 
 app.get('/getCountries', (req, res) => {
   console.log('GET Countries')
-  const url = `${restCountriesUrl}${tripData.code}`;
+  const url = `${restCountriesUrl}${trip.code}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
           console.log(response)
-          tripData['capital'] = response.capital;
-          tripData['currencyInfo'] = {code: response.currencies[0].code, 
+          trip['capital'] = response.capital;
+          trip['currencyInfo'] = {code: response.currencies[0].code, 
             name: response.currencies[0].name, 
             symbol: response.currencies[0].symbol}
-          tripData['flag'] = response.flag
+          trip['flag'] = response.flag
           
           if(response.languages.length > 1){
             langArray = [];
             for (let lang of response.languages) {
               langArray.push(lang.name)
             }
-            tripData['languages'] = langArray
+            trip['languages'] = langArray
           }else {
-            tripData['languages'] = response.languages[0].name
+            trip['languages'] = response.languages[0].name
           }
 
           res.send(true);
@@ -153,14 +152,14 @@ app.get('/getCountries', (req, res) => {
 
 app.get('/getTravelAdvice', (req, res) => {
   console.log('GET Travel Advice Info')
-  const url = `${travelAdviceUrl}${tripData.code}`;
+  const url = `${travelAdviceUrl}${trip.code}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
         .then(response =>{
-          let travelAdvisoryMessage = response.data[tripData.code].advisory.message 
+          let travelAdvisoryMessage = response.data[trip.code].advisory.message 
           console.log(travelAdvisoryMessage);
-          tripData.advise = travelAdvisoryMessage;
+          trip.advise = travelAdvisoryMessage;
 
           res.send(true);
     })
@@ -171,7 +170,7 @@ app.get('/getTravelAdvice', (req, res) => {
 
 app.get('/getCityImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayUrl}${fixSpaces(tripData.name)}+${fixSpaces(tripData.countryName)}${pixabayUrlArgs}`;
+  const url = `${pixabayUrl}${fixSpaces(trip.name)}+${fixSpaces(trip.countryName)}${pixabayUrlArgs}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -184,7 +183,7 @@ app.get('/getCityImage', (req, res) => {
           cityArray.push(result1);
           cityArray.push(result2);
           cityArray.push(result3);
-          tripData.cityArray = cityArray
+          trip.cityArray = cityArray
           res.send(true);
         })
         .catch(error => {
@@ -194,7 +193,7 @@ app.get('/getCityImage', (req, res) => {
 
 app.get('/getCountryImage', (req, res) => {
   console.log('GET Image')
-  const url = `${pixabayUrl}${fixSpaces(tripData.countryName)}${pixabayUrlArgs}`;
+  const url = `${pixabayUrl}${fixSpaces(trip.countryName)}${pixabayUrlArgs}`;
   console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -206,7 +205,7 @@ app.get('/getCountryImage', (req, res) => {
           countryArray.push(result1);
           countryArray.push(result2);
           countryArray.push(result3);
-          tripData.countryArray = countryArray
+          trip.countryArray = countryArray
           res.send(true);
         })
         .catch(error => {
@@ -215,8 +214,8 @@ app.get('/getCountryImage', (req, res) => {
 })
 
 app.get('/getTrip', (req, res) => {
-    console.log(tripData);
-    res.send(tripData);
+    console.log(trip);
+    res.send(trip);
 })
 
 // Helper function to convert all place names with spaces to include "+" between them

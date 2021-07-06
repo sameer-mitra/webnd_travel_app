@@ -1,6 +1,4 @@
-// Define variables for Document object collectors
 import {    convertTimeUnits, splitDate, formatLanguages } from './helperFunctions';
-
 
 // Trip Planner - User Entry Point
 const resultID = document.getElementById('result-data');
@@ -18,7 +16,6 @@ const errorInfo = document.getElementById('error');
 
 // Location Results Selectors
 const cityResult = document.getElementById('city');
-const provinceResult = document.getElementById('province');
 const countryResult = document.getElementById('country');
 
 // Country-specific information Selectors
@@ -95,12 +92,12 @@ async function handleSubmit(event) {
       await fetchLocal(`http://localhost:8082/getTravelAdvice`)
 
 
-      const tripData = await fetchLocal(`http://localhost:8082/getTrip`);
+      const trip = await fetchLocal(`http://localhost:8082/getTrip`);
 
       console.log('###############');
-      console.log(tripData);
+      console.log(trip);
       console.log('###############');
-      updateUI(tripData)
+      updateUI(trip)
 
   }else{
     //alert('Please enter a valid trip duration!! Entries must start today or in the future and end at least one day after');
@@ -113,7 +110,7 @@ async function handleSubmit(event) {
 
 }
 
-async function postTrip(url, tripData){
+async function postTrip(url, trip){
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -121,7 +118,7 @@ async function postTrip(url, tripData){
       headers:{
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(tripData)
+      body: JSON.stringify(trip)
     });
 }
 
@@ -146,7 +143,6 @@ const fetchLocal = async(url) => {
 
 // UI Functions
 const updateUI = async (results) => {
-  // Show the Travel Plan
   resultID.style.display = 'block';
 
   // Update Trip Date Info Section
@@ -157,11 +153,6 @@ const updateUI = async (results) => {
 
   //Update City Info Section
   cityResult.innerHTML = results.name;
-  if(results.name === results.adminName){
-    provinceResult.innerHTML = 'N/A'
-  } else {
-    provinceResult.innerHTML = results.adminName;
-  }
   countryResult.innerHTML = results.countryName;
 
   //Update Weather Info Section
@@ -182,9 +173,6 @@ const updateUI = async (results) => {
 
   //Update Advisory Info Section
   advisory.innerHTML = results.advise;
-  advisoryMessage.innerHTML = 'Click on the link here for further information:'
-  advisoryLink.href = 'https://www.travel-advisory.info/all-countries'
-  advisoryLink.innerHTML = 'https://www.travel-advisory.info/all-countries'
 
   //Update Images
   if(results.cityArray === undefined || results.cityArray.length < 3){

@@ -1,14 +1,7 @@
 // Neutrals
 $white: #fff;
 $off-white: hsl(45, 29%, 97%);
-$grey-050: hsl(210, 36%, 96%);
-$grey-100: hsl(212, 33%, 89%);
-$grey-200: hsl(210, 31%, 80%);
-$grey-400: hsl(209, 23%, 60%);
-$grey-500: hsl(210, 22%, 49%);
-$grey-600: hsl(209, 28%, 39%);
-$grey-700: hsl(209, 34%, 30%);
-$grey-900: hsl(209, 61%, 16%);
+$grey: hsl(209, 61%, 16%);
 
 // Green
 $light-green: #a4f1a4;
@@ -59,7 +52,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    color: $grey-900;
+    color: $grey;
     background: $white;
     font-family: 'Poppins', sans-serif;
 }
@@ -183,8 +176,6 @@ section.banner {
     background-color: $blue;
 }
 
-
-
 #result-data{
     display: none;
 }
@@ -210,9 +201,11 @@ section.banner {
 
 #trip-info{
     background-color: $card-color;
-    padding-bottom: 5px;
-    margin: 0 auto;
-    margin-top: 10px;
+    border: solid;
+    border-color: $dark-blue;
+    border-width: 2px;
+    padding: 5px;
+    margin: 10px;
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     grid-column-gap: 10px;
@@ -225,7 +218,7 @@ section.banner {
     padding-bottom: 5px;
     margin: 0 auto;
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(1, 1fr); 
     grid-column-gap: 10px;
     grid-row-gap: 0px;
     width: 95%;
@@ -233,8 +226,11 @@ section.banner {
 
 #country-info{
     background-color: $card-color;
-    padding-bottom: 5px;
-    margin: 0 auto;
+    border: solid;
+    border-color: $dark-blue;
+    border-width: 2px;
+    padding: 5px;
+    margin: 10px;
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     grid-column-gap: 10px;
@@ -251,8 +247,11 @@ section.banner {
 //Weather and Advisory
 #weather-info {
     background-color: $card-color;
-    padding-bottom: 5px;
-    margin: 0 auto;
+    border: solid;
+    border-color: $dark-blue;
+    border-width: 2px;
+    padding: 5px;
+    margin: 10px;
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     grid-column-gap: 10px;
@@ -273,8 +272,16 @@ section.banner {
 
 #travel-advisory-info {
     background-color: F0B4B4;
-    height: fit-content;
-    padding-bottom: 20px;
+    border: solid;
+    border-color: $dark-red;
+    border-width: 2px;
+    padding: 5px;
+    margin: 10px;
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); 
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    width: 95%;
 }
 
 //Pixabay Images
@@ -315,6 +322,7 @@ section.banner {
 }
 
 #print{
+    width: 40%;
     font-size: 1.2em;
     margin: 5px;
 }
@@ -325,6 +333,7 @@ section.banner {
 }
 
 #reset{
+    width: 40%;
     font-size: 1.2em;
     margin: 5px;
 }
@@ -347,10 +356,6 @@ section.banner {
 
     #date-return{
         width: 100%;
-    }
-
-    #quote {
-        font-size: 92%;
     }
 }
 
